@@ -13,9 +13,29 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-router.get('/:name', async (req, res, next) => {
+router.get('/food', async (req, res, next) => {
     try {
-        let results = await db.one(req.params.name);
+        let results = await db.allFood();
+        res.json(results);
+    } catch(e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+router.get('/supplier', async (req, res, next) => {
+    try {
+        let results = await db.allSupplier();
+        res.json(results);
+    } catch(e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+router.get('/store', async (req, res, next) => {
+    try {
+        let results = await db.allStore();
         res.json(results);
     } catch(e) {
         console.log(e);
